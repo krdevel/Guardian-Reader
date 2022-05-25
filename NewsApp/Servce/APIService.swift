@@ -87,11 +87,7 @@ class APIService {
                         //                        print("Response status is ok")
                         if let articles = articles.response.results {
                             //                            print("articlesarticlesarticles, withSearchQuery: \(withSearchQuery) self.delegate? \(self.delegate) \(articles)")
-                            if(withSearchQuery) {
-                                self.delegate?.articlesAreFetchedWithSearchQuery(articles: articles)
-                            } else {
-                                self.delegate?.articlesAreFetchedWithId(articles: articles) //Skicka hela articles från JSON-decode (namna om), så vi når pages, currentPage m.m. i ArticlesTableViewController m.fl
-                            }
+                                self.delegate?.articlesAreFetched(articles: articles)
                         }
                     }
                 }
@@ -192,12 +188,8 @@ class APIService {
 
 protocol APIServiceDelegate {
     func categoriesAreFetched(categories: [Category])
-    func articlesAreFetchedWithSearchQuery(articles: [Article])
-    func articlesAreFetchedWithId(articles: [Article])
     func articleIsFetched(article: Article)
-    
-    
-    
+    func articlesAreFetched(articles: [Article])
 }
 
 

@@ -35,14 +35,13 @@ class ArticlesTableViewController: UITableViewController, APIServiceDelegate {
     
     func categoriesAreFetched(categories: [Category]) {}
     
-    func articlesAreFetchedWithSearchQuery(articles: [Article]) {        
+    func articlesAreFetched(articles: [Article]) {        
         DispatchQueue.main.async {
             self.articles = articles
             self.tableView.reloadData()
         }
     }
     
-    func articlesAreFetchedWithId(articles: [Article]) {}
     func articleIsFetched(article: Article) {}
     
     

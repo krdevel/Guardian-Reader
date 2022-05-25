@@ -101,8 +101,8 @@ class ArticleViewController: UIViewController, WKNavigationDelegate, APIServiceD
     
     
     func categoriesAreFetched(categories: [Category]) {}
-    func articlesAreFetchedWithSearchQuery(articles: [Article]) {}
-    func articlesAreFetchedWithId(articles: [Article]) {}
+    func articlesAreFetched(articles: [Article]) {}
+    
     func articleIsFetched(article: Article) {
         //        print("articleIsFetched in ArticleViewController, article: \(article)")
         self.article = article

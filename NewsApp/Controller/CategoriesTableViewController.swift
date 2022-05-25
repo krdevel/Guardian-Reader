@@ -28,8 +28,7 @@ class CategoriesTableViewController: UITableViewController, APIServiceDelegate {
         }
     }
     
-    func articlesAreFetchedWithSearchQuery(articles: [Article]) {}
-    func articlesAreFetchedWithId(articles: [Article]) {}
+    func articlesAreFetched(articles: [Article]) {}
     func articleIsFetched(article: Article) {}
     
     

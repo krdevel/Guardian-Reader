@@ -15,7 +15,7 @@ class NewsTableViewController: UITableViewController, UITableViewDataSourcePrefe
     var viewDidLoadTriggered = false
     var currentlyFetchedAtIndex = 0
     var currentPage = 1
-    var prefetchDistance = 2 //Nog mer än 1, även om det blir många API-anrop
+    var prefetchDistance = 4 //Nog mer än 2, även om det blir många API-anrop
     var useSearchQuery = false
     
     
@@ -52,12 +52,13 @@ class NewsTableViewController: UITableViewController, UITableViewDataSourcePrefe
     }
     
     func fetchArticles() {
-        print("fetchArticlesfetchArticlesfetchArticles")
+//        print("fetchArticlesfetchArticlesfetchArticles")
         apiService?.getArticles(id: self.id!, page: self.currentPage, withSearchQuery: self.useSearchQuery)
     }
     
     func categoriesAreFetched(categories: [Category]) {}
-    func articlesAreFetchedWithSearchQuery(articles: [Article]) {
+    
+    func articlesAreFetched(articles: [Article]) {
         DispatchQueue.main.async {
             self.articles.append(contentsOf: articles)
             self.currentlyFetchedAtIndex = self.articles.count - 1
@@ -65,14 +66,7 @@ class NewsTableViewController: UITableViewController, UITableViewDataSourcePrefe
             self.refreshControl?.endRefreshing()
         }
     }
-    func articlesAreFetchedWithId(articles: [Article]) {
-        DispatchQueue.main.async {
-            self.articles.append(contentsOf: articles)
-            self.currentlyFetchedAtIndex = self.articles.count - 1
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
-        }
-    }
+    
     func articleIsFetched(article: Article) {}
     
     @objc func refresh(sender:AnyObject) {
@@ -118,7 +112,7 @@ class NewsTableViewController: UITableViewController, UITableViewDataSourcePrefe
                             forRowAt indexPath: IndexPath) {
         //        print("willDisplay Cell self.currentlyFetchedAtIndex: \(self.currentlyFetchedAtIndex), indexPath.row: \(indexPath.row), self.prefetchDistance: \(self.prefetchDistance)")
         if((self.currentlyFetchedAtIndex - indexPath.row) < self.prefetchDistance ) {
-            print("SAME, FETCH!")
+//            print("SAME, FETCH!")
             self.currentPage += 1
             refresh(sender: self)
         }
@@ -127,7 +121,7 @@ class NewsTableViewController: UITableViewController, UITableViewDataSourcePrefe
     }
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        print("prefetchRowsAt: \(indexPaths)")
+//        print("prefetchRowsAt: \(indexPaths)")
     }
     
     func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {        
